@@ -1,0 +1,1470 @@
+{
+  "1207090544588174": {
+    "analyst": "Nikhil Asudani",
+    "metrics": {
+      "activeLoad": {
+        "tasks": 23,
+        "points": 56
+      },
+      "overdue": {
+        "tasks": 3,
+        "points": 9
+      },
+      "staleOverdue": {
+        "tasks": 0,
+        "points": 0
+      },
+      "unscoped": {
+        "tasks": 3
+      },
+      "blocked": {
+        "tasks": 2
+      },
+      "review": {
+        "tasks": 2
+      },
+      "loadRatio": {
+        "ratio": 1.05,
+        "totalLoad": 65,
+        "triWeekCapacity": 61.800000000000004,
+        "avgThroughput": 20.6,
+        "signal": "Optimal"
+      },
+      "window": {
+        "overdueStart": "2026-04-06",
+        "activeStart": "2026-04-27",
+        "activeEnd": "2026-05-15"
+      }
+    },
+    "throughput": {
+      "avgThroughput": 20.6,
+      "weekDetails": [
+        {
+          "start": "2026-04-19",
+          "end": "2026-04-25",
+          "weight": 1,
+          "points": 16,
+          "ptoDays": 0,
+          "excluded": false
+        },
+        {
+          "start": "2026-04-12",
+          "end": "2026-04-18",
+          "weight": 0.95,
+          "points": 22,
+          "ptoDays": 0,
+          "excluded": false
+        },
+        {
+          "start": "2026-04-05",
+          "end": "2026-04-11",
+          "weight": 0.85,
+          "points": 17,
+          "ptoDays": 1,
+          "excluded": false
+        },
+        {
+          "start": "2026-03-29",
+          "end": "2026-04-04",
+          "weight": 0.75,
+          "points": 20,
+          "ptoDays": 0,
+          "excluded": false
+        },
+        {
+          "start": "2026-03-22",
+          "end": "2026-03-28",
+          "weight": 0.6,
+          "points": 22,
+          "ptoDays": 0,
+          "excluded": false
+        },
+        {
+          "start": "2026-03-15",
+          "end": "2026-03-21",
+          "weight": 0.5,
+          "points": 23,
+          "ptoDays": 1,
+          "excluded": false
+        },
+        {
+          "start": "2026-03-08",
+          "end": "2026-03-14",
+          "weight": 0.4,
+          "points": 30,
+          "ptoDays": 0,
+          "excluded": false
+        },
+        {
+          "start": "2026-03-01",
+          "end": "2026-03-07",
+          "weight": 0.3,
+          "points": 24,
+          "ptoDays": 0,
+          "excluded": false
+        }
+      ]
+    },
+    "chart": {
+      "days": [
+        {
+          "date": "2026-04-06",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": {
+            "type": "PTO",
+            "color": "PTO",
+            "capacity": 0
+          }
+        },
+        {
+          "date": "2026-04-07",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-08",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-09",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-10",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-13",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-14",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-15",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-16",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-17",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-20",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-21",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-22",
+          "points": 1.5,
+          "barColor": "overdue",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-23",
+          "points": 3.5,
+          "barColor": "overdue",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-24",
+          "points": 6.83,
+          "barColor": "overdue",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-27",
+          "points": 9.77,
+          "barColor": "heavy",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-28",
+          "points": 3.1,
+          "barColor": "moderate",
+          "isToday": false,
+          "calendar": {
+            "type": "Appointment",
+            "color": "Appointments, Misc.",
+            "capacity": 0.5
+          }
+        },
+        {
+          "date": "2026-04-29",
+          "points": 3.3,
+          "barColor": "moderate",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-30",
+          "points": 4.5,
+          "barColor": "moderate",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-01",
+          "points": 5.5,
+          "barColor": "moderate",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-04",
+          "points": 2.5,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-05",
+          "points": 1,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-06",
+          "points": 1,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-07",
+          "points": 2,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-08",
+          "points": 5,
+          "barColor": "moderate",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-11",
+          "points": 1.5,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-12",
+          "points": 3,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-13",
+          "points": 5.5,
+          "barColor": "moderate",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-14",
+          "points": 2,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-15",
+          "points": 4.2,
+          "barColor": "moderate",
+          "isToday": false,
+          "calendar": null
+        }
+      ],
+      "backlog": {
+        "tasks": 0,
+        "points": 0
+      }
+    },
+    "taskList": {
+      "overdue": [
+        {
+          "gid": "1213094655049224",
+          "name": "April QBR - Acadia Analyze Dashboard | Monthly Retention rate reports (90-day & 12- month) ",
+          "dueOn": "2026-04-24",
+          "startOn": "2026-04-21",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "High effort",
+          "effortPoints": 6,
+          "statusName": "In Progress ",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1213184979185019",
+          "name": "Acadia Analyze Dashboard | Yoy Plan Phase 1 ",
+          "dueOn": "2026-04-24",
+          "startOn": "2026-03-23",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Medium effort",
+          "effortPoints": 3,
+          "statusName": "In Progress ",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1213969494966496",
+          "name": "[flexible] AA Weekly KPI - Remove other BU data filter/flow from Weekly KPI report dashboards (email chain: Acadia Reports)",
+          "dueOn": "2026-04-24",
+          "startOn": "2026-04-14",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Need to scope",
+          "effortPoints": 0,
+          "statusName": "In Progress ",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        }
+      ],
+      "working": [
+        {
+          "gid": "1214153806942656",
+          "name": "May Monthly Mover | Create customer table for NCOA and share with Jai",
+          "dueOn": "2026-04-27",
+          "startOn": "2026-04-24",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bassett"
+        },
+        {
+          "gid": "1213964944494909",
+          "name": "Pull the final customer list based on approved final counts",
+          "dueOn": "2026-04-27",
+          "startOn": "2026-04-27",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bassett"
+        },
+        {
+          "gid": "1214160496143134",
+          "name": "Priority 1 - NEW Weekly KPI report",
+          "dueOn": "2026-04-27",
+          "startOn": "2026-04-27",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Medium effort",
+          "effortPoints": 3,
+          "statusName": "Ongoing",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1214155255164936",
+          "name": "Priority 2 - Create Weekly GO and Anniversary Report ",
+          "dueOn": "2026-04-27",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Medium effort",
+          "effortPoints": 3,
+          "statusName": "Ongoing",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1214182893486456",
+          "name": "March Mailer Address 2 Analysis",
+          "dueOn": "2026-04-28",
+          "startOn": "2026-04-24",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "High effort",
+          "effortPoints": 6,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bassett"
+        },
+        {
+          "gid": "1213796061853344",
+          "name": "Update Bealls Acadia Analyze Default Dates ",
+          "dueOn": "2026-04-28",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Ongoing",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1214167806906298",
+          "name": "May Monthly Mover | After NCOA, pull counts by communication_type",
+          "dueOn": "2026-04-29",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Medium effort",
+          "effortPoints": 3,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bassett"
+        },
+        {
+          "gid": "1214227943080050",
+          "name": "Weekly on Thursday | Do a quick check on new guests/match rate etc. for the past few days and raise any issues to the team before the standup ",
+          "dueOn": "2026-04-30",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Ongoing",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1213470098625816",
+          "name": "Claritas Appended Demographic Analysis - compare against DB ",
+          "dueOn": "2026-05-01",
+          "startOn": "2026-04-13",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Medium effort",
+          "effortPoints": 3,
+          "statusName": "In Progress ",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1213439036280142",
+          "name": "Acadia Analyze |  Transaction Dashboard – Adding Daily View",
+          "dueOn": "2026-05-01",
+          "startOn": "2026-04-01",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Medium effort",
+          "effortPoints": 3,
+          "statusName": "In Progress ",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1212802090199337",
+          "name": "Store closing deep dive - March store ",
+          "dueOn": "2026-05-01",
+          "startOn": "2026-04-27",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Medium effort",
+          "effortPoints": 3,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1210768676786013",
+          "name": " monthly \"old\" KPI report (kickoff Monday, wrap up first thing Tuesday AM for Bealls Tue meeting) ",
+          "dueOn": "2026-05-04",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Medium effort",
+          "effortPoints": 3,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1214167806906306",
+          "name": "May Monthly Mover | Pull final customer file with approved counts,",
+          "dueOn": "2026-05-04",
+          "startOn": "2026-05-01",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bassett"
+        },
+        {
+          "gid": "1214167806906308",
+          "name": "May Monthly Mover | append the unique promo codes to the final customer file + share the final file location with Kari ",
+          "dueOn": "2026-05-05",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bassett"
+        },
+        {
+          "gid": "1213439036280152",
+          "name": "Acadia Analyze | Ask Acadia ",
+          "dueOn": "2026-05-08",
+          "startOn": "2026-04-24",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "High effort",
+          "effortPoints": 6,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1210775583129865",
+          "name": "QA 90-day monthly retention rate report & ensure its client ready ",
+          "dueOn": "2026-05-08",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1210775545755602",
+          "name": "QA Monthly 12 month retention rate report & ensure its client ready ",
+          "dueOn": "2026-05-08",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1213787457268650",
+          "name": "Store Closing Analysis Deep Dive ",
+          "dueOn": "2026-05-13",
+          "startOn": "2026-04-27",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "High effort",
+          "effortPoints": 6,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1213375743377470",
+          "name": "Refresh Behavioral Segments & Profile Demographics Decks (after the quarterly segmentation is done) ",
+          "dueOn": "2026-05-13",
+          "startOn": "2026-04-30",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Medium effort",
+          "effortPoints": 3,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1211853936135209",
+          "name": "Update LRP Raw Data | FY26 Q3",
+          "dueOn": "2026-05-15",
+          "startOn": "2026-05-11",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "High effort",
+          "effortPoints": 6,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1213439036280147",
+          "name": "Acadia Analyze | Contactability Analysis",
+          "dueOn": "2026-05-20",
+          "startOn": "2026-05-11",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Very High",
+          "effortPoints": 12,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1210768676786015",
+          "name": "monthly \"old\" KPI report (kickoff Monday, wrap up first thing Tuesday AM for Bealls Tue meeting) ",
+          "dueOn": "2026-06-01",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Medium effort",
+          "effortPoints": 3,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1210775524171549",
+          "name": "QA 90-day monthly retention rate report & ensure its client ready ",
+          "dueOn": "2026-06-05",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1210775609229624",
+          "name": "QA Monthly 12 month retention rate report & ensure its client ready ",
+          "dueOn": "2026-06-05",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1212466761405001",
+          "name": "pull all stores list ",
+          "dueOn": "2026-06-13",
+          "startOn": "2026-06-09",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1210768676786017",
+          "name": "monthly \"old\" KPI report (kickoff Monday, wrap up first thing Tuesday AM for Bealls Tue meeting) ",
+          "dueOn": "2026-07-06",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Medium effort",
+          "effortPoints": 3,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1210775493284820",
+          "name": "QA 90-day monthly retention rate report & ensure its client ready ",
+          "dueOn": "2026-07-10",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1210775542110874",
+          "name": "QA Monthly 12 month retention rate report & ensure its client ready ",
+          "dueOn": "2026-07-10",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1213018963881851",
+          "name": "Jan QBR follow up | Test Anniversary campaign engagement: Evaluate whether Anniversary campaign purchases drive new guests to return within 90 days",
+          "dueOn": "2026-07-10",
+          "startOn": "2026-07-06",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "High effort",
+          "effortPoints": 6,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        }
+      ],
+      "blocked": [
+        {
+          "gid": "1213379766129635",
+          "name": "April QBR - Annv. Campaign | Acquisition Mailer Reporting ",
+          "dueOn": "2026-04-22",
+          "startOn": "2026-04-06",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "High effort",
+          "effortPoints": 6,
+          "statusName": "Pending Details from Client",
+          "statusGroup": "Blocked",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1213454583752579",
+          "name": "Outdoor Mailer | Matchback reporting heads up",
+          "dueOn": "2026-04-24",
+          "startOn": "2026-04-20",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Need to scope",
+          "effortPoints": 0,
+          "statusName": "Pending Details from Client",
+          "statusGroup": "Blocked",
+          "client": "Bassett"
+        }
+      ],
+      "unscoped": [
+        {
+          "gid": "1213969494966496",
+          "name": "[flexible] AA Weekly KPI - Remove other BU data filter/flow from Weekly KPI report dashboards (email chain: Acadia Reports)",
+          "dueOn": "2026-04-24",
+          "startOn": "2026-04-14",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Need to scope",
+          "effortPoints": 0,
+          "statusName": "In Progress ",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        },
+        {
+          "gid": "1214170092348415",
+          "name": "Quick QA FY Q1 2026 Customer File Report",
+          "dueOn": "2026-04-27",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Need to scope",
+          "effortPoints": 0,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bassett"
+        },
+        {
+          "gid": "1214074317883138",
+          "name": "Quick QA New Guest Month-Wise Check Report",
+          "dueOn": "2026-04-27",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Need to scope",
+          "effortPoints": 0,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bassett"
+        },
+        {
+          "gid": "1213987738352475",
+          "name": "AA Weekly KPI Report | 12mo Rolling Filter Issue",
+          "dueOn": "2026-05-01",
+          "startOn": "2026-04-17",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Need to scope",
+          "effortPoints": 0,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Bealls"
+        }
+      ]
+    },
+    "upcomingPTO": [],
+    "calendarDays": {
+      "2026-04-28": {
+        "type": "Appointment",
+        "color": "Appointments, Misc.",
+        "capacity": 0.5
+      },
+      "2026-08-27": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-08-26": {
+        "type": "Holiday",
+        "color": "Holiday",
+        "capacity": 0
+      },
+      "2026-08-20": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-08-21": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-08-22": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-08-23": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-08-24": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-08-25": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-06-18": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-06-19": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-06-20": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-06-21": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-06-22": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2027-02-27": {
+        "type": "Birthday",
+        "color": "Birthday ",
+        "capacity": 1
+      },
+      "2027-04-17": {
+        "type": "Work Anniversary",
+        "color": "Work Anniversary",
+        "capacity": 1
+      },
+      "2026-03-19": {
+        "type": "Holiday",
+        "color": "Holiday",
+        "capacity": 0
+      },
+      "2026-04-06": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-02-25": {
+        "type": "Appointment",
+        "color": "Appointments, Misc.",
+        "capacity": 0.5
+      },
+      "2026-02-11": {
+        "type": "Appointment",
+        "color": "Appointments, Misc.",
+        "capacity": 0.5
+      },
+      "2026-02-27": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      }
+    }
+  },
+  "1209071959445400": {
+    "analyst": "Jinay Keniya",
+    "metrics": {
+      "activeLoad": {
+        "tasks": 11,
+        "points": 29
+      },
+      "overdue": {
+        "tasks": 0,
+        "points": 0
+      },
+      "staleOverdue": {
+        "tasks": 0,
+        "points": 0
+      },
+      "unscoped": {
+        "tasks": 0
+      },
+      "blocked": {
+        "tasks": 0
+      },
+      "review": {
+        "tasks": 5
+      },
+      "loadRatio": {
+        "ratio": 0.58,
+        "totalLoad": 29,
+        "triWeekCapacity": 50.400000000000006,
+        "avgThroughput": 16.8,
+        "signal": "Underutilized"
+      },
+      "window": {
+        "overdueStart": "2026-04-06",
+        "activeStart": "2026-04-27",
+        "activeEnd": "2026-05-15"
+      }
+    },
+    "throughput": {
+      "avgThroughput": 16.8,
+      "weekDetails": [
+        {
+          "start": "2026-04-19",
+          "end": "2026-04-25",
+          "weight": 1,
+          "points": 0,
+          "ptoDays": 0,
+          "excluded": false
+        },
+        {
+          "start": "2026-04-12",
+          "end": "2026-04-18",
+          "weight": 0.95,
+          "points": 0,
+          "ptoDays": 0,
+          "excluded": false
+        },
+        {
+          "start": "2026-04-05",
+          "end": "2026-04-11",
+          "weight": 0.85,
+          "points": 12,
+          "ptoDays": 0,
+          "excluded": false
+        },
+        {
+          "start": "2026-03-29",
+          "end": "2026-04-04",
+          "weight": 0.75,
+          "points": 32,
+          "ptoDays": 0,
+          "excluded": false
+        },
+        {
+          "start": "2026-03-22",
+          "end": "2026-03-28",
+          "weight": 0.6,
+          "points": 25,
+          "ptoDays": 2,
+          "excluded": false
+        },
+        {
+          "start": "2026-03-15",
+          "end": "2026-03-21",
+          "weight": 0.5,
+          "points": 36,
+          "ptoDays": 3,
+          "excluded": false
+        },
+        {
+          "start": "2026-03-08",
+          "end": "2026-03-14",
+          "weight": 0.4,
+          "points": 29,
+          "ptoDays": 0,
+          "excluded": false
+        },
+        {
+          "start": "2026-03-01",
+          "end": "2026-03-07",
+          "weight": 0.3,
+          "points": 37,
+          "ptoDays": 0,
+          "excluded": false
+        }
+      ]
+    },
+    "chart": {
+      "days": [
+        {
+          "date": "2026-04-06",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-07",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-08",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-09",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-10",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-13",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-14",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-15",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-16",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-17",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-20",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-21",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-22",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-23",
+          "points": 1.2,
+          "barColor": "overdue",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-24",
+          "points": 4.4,
+          "barColor": "overdue",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-27",
+          "points": 9.1,
+          "barColor": "heavy",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-28",
+          "points": 8.8,
+          "barColor": "heavy",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-29",
+          "points": 2.5,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-04-30",
+          "points": 2,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-01",
+          "points": 1,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-04",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-05",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-06",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-07",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-08",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-11",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-12",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-13",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-14",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        },
+        {
+          "date": "2026-05-15",
+          "points": 0,
+          "barColor": "light",
+          "isToday": false,
+          "calendar": null
+        }
+      ],
+      "backlog": {
+        "tasks": 0,
+        "points": 0
+      }
+    },
+    "taskList": {
+      "overdue": [],
+      "working": [
+        {
+          "gid": "1214259801461842",
+          "name": "Daily Reporting | attrition + conversion reporting of Extra Play members versus Elite members",
+          "dueOn": "2026-04-27",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Sky Zone"
+        },
+        {
+          "gid": "1214182893486449",
+          "name": "QA the Households Jai built",
+          "dueOn": "2026-04-27",
+          "startOn": "2026-04-24",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "High effort",
+          "effortPoints": 6,
+          "statusName": "In Progress ",
+          "statusGroup": "Working",
+          "client": "Sky Zone"
+        },
+        {
+          "gid": "1211453041857508",
+          "name": "Monthly Birthday List | Include July Birthdays",
+          "dueOn": "2026-04-28",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Sky Zone"
+        },
+        {
+          "gid": "1214150481914577",
+          "name": "Weekly Paid Performance Reports | Self QA then please share weekly reports in the skyzone internal slack channel then share the 2yr stack in existing slack thread",
+          "dueOn": "2026-04-28",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Sky Zone"
+        },
+        {
+          "gid": "1214150799638801",
+          "name": "Weekly Summer Pass Audience Refresh | Google, Pinterest, Meta | Until 8/04",
+          "dueOn": "2026-04-28",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Sky Zone"
+        },
+        {
+          "gid": "1214081012358738",
+          "name": "Declining Sales Analysis | What is driving declining sales + how have recent holidays/promos impacted performance?",
+          "dueOn": "2026-04-28",
+          "startOn": "2026-04-16",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Very High",
+          "effortPoints": 12,
+          "statusName": "In Progress ",
+          "statusGroup": "Working",
+          "client": "FreshThyme"
+        },
+        {
+          "gid": "1213200297090804",
+          "name": "Audience/Liveramp Investigation | What \"parent file\" could we create that would contain the most existing paid media audiences to help us save activation units",
+          "dueOn": "2026-04-29",
+          "startOn": "2026-04-24",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Medium effort",
+          "effortPoints": 3,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Sky Zone"
+        },
+        {
+          "gid": "1213888722033858",
+          "name": "Ticket Purchasers Monthly Audiences | GA, FB, TikTok, Pinterest, Snapchat",
+          "dueOn": "2026-04-29",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Sky Zone"
+        },
+        {
+          "gid": "1214247949626233",
+          "name": "People who attended Glow in the past 30 days (O&O + NAF) | Updated weekly (any time during the week)",
+          "dueOn": "2026-04-30",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Sky Zone"
+        },
+        {
+          "gid": "1214260930554192",
+          "name": "Weekly Refresh Sky Zone Reports | Extra Play",
+          "dueOn": "2026-04-30",
+          "startOn": null,
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Sky Zone"
+        },
+        {
+          "gid": "1213627169862237",
+          "name": "Every Other Month | SZ Profile Audiences | Can you please export profile audiences for GA, FB, and Liveramp",
+          "dueOn": "2026-05-01",
+          "startOn": "2026-04-25",
+          "completed": false,
+          "completedAt": null,
+          "effortName": "Low effort",
+          "effortPoints": 1,
+          "statusName": "Acknowledged",
+          "statusGroup": "Working",
+          "client": "Sky Zone"
+        }
+      ],
+      "blocked": [],
+      "unscoped": []
+    },
+    "upcomingPTO": [],
+    "calendarDays": {
+      "2026-12-08": {
+        "type": "Birthday",
+        "color": "Birthday ",
+        "capacity": 1
+      },
+      "2027-01-06": {
+        "type": "Work Anniversary",
+        "color": "Work Anniversary",
+        "capacity": 1
+      },
+      "2026-03-18": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-03-19": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-03-20": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-03-21": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-03-22": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-03-23": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      },
+      "2026-03-24": {
+        "type": "PTO",
+        "color": "PTO",
+        "capacity": 0
+      }
+    }
+  }
+}
