@@ -30,6 +30,7 @@ export async function GET(request: Request) {
     const blob = await put("inaflow-data.json", JSON.stringify(result), {
       access: "public",
       addRandomSuffix: false,
+      allowOverwrite: true,
     });
 
     return Response.json({
