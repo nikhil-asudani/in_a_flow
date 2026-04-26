@@ -1,7 +1,7 @@
 import rawData from './inaflow_output.json';
 
 export type Signal = "Optimal" | "Underutilized" | "Overloaded"
-export type EffortLevel = "Low effort" | "Medium effort" | "High effort" | "Need to scope" | string
+export type EffortLevel = "Low effort" | "Medium effort" | "High effort" | "Very High" | "Need to scope" | string
 export type TaskStatus = "working" | "overdue" | "blocked" | "unscoped"
 export type CalendarEventType = string
 
@@ -32,11 +32,12 @@ export interface ChartDay {
 export interface Metrics {
   activeLoad: { tasks: number; points: number }
   overdue: { tasks: number; points: number }
+  staleOverdue?: { tasks: number; points: number }
   unscoped: { tasks: number }
   blocked: { tasks: number }
   review: { tasks: number }
-  loadRatio: { ratio: number; avgThroughput: number; signal: Signal }
-  window: { start: string; end: string }
+  loadRatio: { ratio: number; totalLoad?: number; triWeekCapacity?: number; avgThroughput: number; signal: Signal }
+  window: { overdueStart?: string; activeStart?: string; activeEnd?: string; start?: string; end?: string }
 }
 
 export interface Analyst {
@@ -65,19 +66,54 @@ function getInitials(name: string) {
   return name.split(" ").map(n => n[0]).join("").toUpperCase();
 }
 
-export const analysts: Analyst[] = Object.entries(rawData).map(([gid, data]: [string, any]) => ({
-  id: gid,
-  name: data.analyst,
-  initials: getInitials(data.analyst),
-  role: "Analyst",
-  signal: data.metrics.loadRatio.signal as Signal,
-  metrics: data.metrics,
-  throughput: data.throughput,
-  chartData: {
-    days: data.chart.days,
-    backlog: data.chart.backlog,
-  },
-  tasks: data.taskList,
-  upcomingPTO: data.upcomingPTO,
-  calendarDays: data.calendarDays,
-}));
+function mapRawToAnalysts(data: Record<string, any>): Analyst[] {
+  return Object.entries(data).map(([gid, d]: [string, any]) => ({
+    id: gid,
+    name: d.analyst,
+    initials: getInitials(d.analyst),
+    role: "Analyst",
+    signal: d.metrics.loadRatio.signal as Signal,
+    metrics: d.metrics,
+    throughput: d.throughput,
+    chartData: { days: d.chart.days, backlog: d.chart.backlog },
+    tasks: d.taskList,
+    upcomingPTO: d.upcomingPTO,
+    calendarDays: d.calendarDays,
+  }));
+}
+
+// Static data from build time (fallback)
+export const analysts: Analyst[] = mapRawToAnalysts(rawData);
+
+// API data fetcher (for client-side refresh)
+export async function fetchAnalystsFromAPI(): Promise<{ analysts: Analyst[]; syncedAt: string } | null> {
+  try {
+    const res = await fetch("/api/data");
+    if (!res.ok) return null;
+    const json = await res.json();
+    return {
+      analysts: mapRawToAnalysts(json.data),
+      syncedAt: json.syncedAt,
+    };
+  } catch {
+    return null;
+  }
+}
+
+// Trigger a sync and return fresh data
+export async function triggerSync(): Promise<{ analysts: Analyst[]; syncedAt: string } | null> {
+  try {
+    const res = await fetch("/api/sync", {
+      headers: { "x-manual-refresh": "true" },
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || "Sync failed");
+    }
+    // After sync completes, fetch the fresh data
+    return await fetchAnalystsFromAPI();
+  } catch (error) {
+    console.error("Sync error:", error);
+    return null;
+  }
+}

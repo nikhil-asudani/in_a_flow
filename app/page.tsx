@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useMemo } from "react"
-import { Search } from "lucide-react"
+import { useState, useMemo, useEffect, useCallback } from "react"
+import { Search, RefreshCw } from "lucide-react"
 import {
   BarChart,
   Bar,
@@ -13,7 +13,7 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts"
-import { analysts, type Analyst, type Signal, type EffortLevel, type Task } from "@/lib/data"
+import { analysts as staticAnalysts, fetchAnalystsFromAPI, triggerSync, type Analyst, type Signal, type EffortLevel, type Task } from "@/lib/data"
 import { cn } from "@/lib/utils"
 
 // Signal color mappings
@@ -641,26 +641,122 @@ function AnalystDetail({ analyst }: { analyst: Analyst }) {
 }
 
 export default function Dashboard() {
-  const [selectedId, setSelectedId] = useState(analysts[0]?.id || "")
+  const [analysts, setAnalysts] = useState<Analyst[]>(staticAnalysts)
+  const [selectedId, setSelectedId] = useState(staticAnalysts[0]?.id || "")
   const [searchQuery, setSearchQuery] = useState("")
+  const [syncedAt, setSyncedAt] = useState<string | null>(null)
+  const [isSyncing, setIsSyncing] = useState(false)
+  const [syncError, setSyncError] = useState<string | null>(null)
+
+  // On mount, try to load fresh data from API (Vercel Blob)
+  useEffect(() => {
+    fetchAnalystsFromAPI().then((result) => {
+      if (result) {
+        setAnalysts(result.analysts)
+        setSyncedAt(result.syncedAt)
+        if (!result.analysts.find(a => a.id === selectedId)) {
+          setSelectedId(result.analysts[0]?.id || "")
+        }
+      }
+    })
+  }, [])
+
+  const handleRefresh = useCallback(async () => {
+    setIsSyncing(true)
+    setSyncError(null)
+    try {
+      const result = await triggerSync()
+      if (result) {
+        setAnalysts(result.analysts)
+        setSyncedAt(result.syncedAt)
+      } else {
+        setSyncError("Sync returned no data")
+      }
+    } catch (err: any) {
+      setSyncError(err.message || "Sync failed")
+    } finally {
+      setIsSyncing(false)
+    }
+  }, [])
 
   const filteredAnalysts = useMemo(() => {
     if (!searchQuery.trim()) return analysts
     const query = searchQuery.toLowerCase()
     return analysts.filter((analyst) => analyst.name.toLowerCase().includes(query))
-  }, [searchQuery])
+  }, [searchQuery, analysts])
 
   const selectedAnalyst = analysts.find((a) => a.id === selectedId) || analysts[0]
 
+  const syncLabel = syncedAt
+    ? `Synced ${new Date(syncedAt).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}`
+    : "Static data"
+
   return (
     <div className="flex h-screen bg-background">
-      <AnalystSidebar
-        analysts={filteredAnalysts}
-        selectedId={selectedId}
-        onSelect={setSelectedId}
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-      />
+      <aside className="w-60 flex-shrink-0 bg-card border-r border-border flex flex-col h-screen">
+        <div className="p-4 pb-3">
+          <div className="flex items-center justify-between mb-3">
+            <h1 className="text-sm text-muted-foreground font-medium">InAFlow</h1>
+            <button
+              onClick={handleRefresh}
+              disabled={isSyncing}
+              className={cn(
+                "flex items-center gap-1.5 text-[11px] text-muted-foreground hover:text-foreground transition-colors px-2 py-1 rounded-md hover:bg-muted/50",
+                isSyncing && "opacity-50 cursor-not-allowed"
+              )}
+              title="Refresh data from Asana"
+            >
+              <RefreshCw className={cn("h-3 w-3", isSyncing && "animate-spin")} />
+              {isSyncing ? "Syncing..." : "Refresh"}
+            </button>
+          </div>
+          <div className="relative">
+            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+            <input
+              type="text"
+              placeholder="Search analysts..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full h-8 pl-8 pr-3 text-[13px] bg-muted/50 border-0 rounded-md placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring"
+            />
+          </div>
+          <p className="text-[10px] text-muted-foreground/60 mt-2">{syncLabel}</p>
+          {syncError && <p className="text-[10px] text-[#E24B4A] mt-1">{syncError}</p>}
+        </div>
+        <div className="flex-1 overflow-y-auto px-2 pb-4">
+          {filteredAnalysts.map((analyst) => {
+            const colors = getSignalColor(analyst.signal)
+            const isSelected = analyst.id === selectedId
+            return (
+              <button
+                key={analyst.id}
+                onClick={() => setSelectedId(analyst.id)}
+                className={cn(
+                  "w-full flex items-center gap-2.5 px-2 py-2 rounded-md text-left transition-colors",
+                  isSelected ? "bg-blue-50" : "hover:bg-muted/50"
+                )}
+              >
+                <span className={cn("w-2 h-2 rounded-full flex-shrink-0", colors.dot)} />
+                <span
+                  className={cn(
+                    "w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-medium flex-shrink-0",
+                    colors.avatar
+                  )}
+                >
+                  {analyst.initials}
+                </span>
+                <span className="text-[13px] text-foreground truncate flex-1">{analyst.name}</span>
+                {hasUpcomingTimeOff(analyst.upcomingPTO) && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#AFA9EC] flex-shrink-0" />
+                )}
+              </button>
+            )
+          })}
+          {filteredAnalysts.length === 0 && (
+            <p className="text-[13px] text-muted-foreground px-2 py-4">No analysts found</p>
+          )}
+        </div>
+      </aside>
       <AnalystDetail analyst={selectedAnalyst} />
     </div>
   )
