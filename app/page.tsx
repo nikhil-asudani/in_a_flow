@@ -688,7 +688,7 @@ export default function Dashboard() {
   const selectedAnalyst = analysts.find((a) => a.id === selectedId) || analysts[0]
 
   const syncLabel = syncedAt
-    ? `Synced ${new Date(syncedAt).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}`
+    ? `Synced ${new Date(syncedAt).toLocaleString("en-US", { timeZone: "America/New_York", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false })} EST`
     : "Static data"
 
   return (
