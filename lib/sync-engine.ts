@@ -67,8 +67,9 @@ const CONFIG = {
 // DATE HELPERS
 // ============================================================
 function today() {
-  const d = new Date();
-  return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const estStr = new Date().toLocaleDateString("en-CA", { timeZone: "America/New_York" });
+  const [y, m, d] = estStr.split("-").map(Number);
+  return new Date(y, m - 1, d);
 }
 function addDays(date: Date, n: number) {
   const d = new Date(date);
