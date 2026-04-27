@@ -86,10 +86,11 @@ function getStubColor(eventType: string | null): { fill: string; border: string 
 }
 
 function getWorkloadColor(value: number, isPast: boolean) {
-  if (isPast) return "#F09595" // Muted red for overdue/past
-  if (value >= 5) return "#E24B4A" // Red - Heavy
-  if (value >= 3) return "#EF9F27" // Amber - Moderate
-  return "#B4B2A9" // Gray - Light
+  if (isPast) return "#F09595"       // Overdue (past)
+  if (value >= 8) return "#991B1B"   // Very Heavy — dark red
+  if (value >= 6) return "#E24B4A"   // Heavy — red
+  if (value >= 3) return "#EF9F27"   // Moderate — amber
+  return "#B4B2A9"                   // Light — gray
 }
 
 // Check if analyst has any time off in next 7 days
@@ -368,8 +369,8 @@ function DailyLoadChart({ analyst }: { analyst: Analyst }) {
               axisLine={false}
               tickFormatter={(value) => `${value} pts`}
               width={45}
-              domain={[0, 8]}
-              ticks={[0, 2, 4, 6, 8]}
+              domain={[0, 16]}
+              ticks={[0, 2, 4, 6, 8, 10, 12, 14, 16]}
             />
             <Tooltip content={<ChartTooltip />} cursor={false} />
             
@@ -430,19 +431,22 @@ function DailyLoadChart({ analyst }: { analyst: Analyst }) {
         </ResponsiveContainer>
       </div>
 
-      <div className="flex items-center gap-3 mt-3 text-[11px] text-muted-foreground">
-        <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-sm bg-[#E24B4A]" />
-          <span>Heavy (5+)</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-sm bg-[#EF9F27]" />
-          <span>Moderate (3-4)</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-sm bg-[#B4B2A9]" />
-          <span>Light (0-2)</span>
-        </div>
+      <div className="flex items-center gap-1.5">
+        <span className="w-2 h-2 rounded-sm bg-[#991B1B]" />
+        <span>Very Heavy (8+)</span>
+      </div>
+      <div className="flex items-center gap-1.5">
+        <span className="w-2 h-2 rounded-sm bg-[#E24B4A]" />
+        <span>Heavy (6-8)</span>
+      </div>
+      <div className="flex items-center gap-1.5">
+        <span className="w-2 h-2 rounded-sm bg-[#EF9F27]" />
+        <span>Moderate (3-6)</span>
+      </div>
+      <div className="flex items-center gap-1.5">
+        <span className="w-2 h-2 rounded-sm bg-[#B4B2A9]" />
+        <span>Light (0-3)</span>
+      </div>
         
         <span className="w-px h-3 bg-border mx-1" />
         
