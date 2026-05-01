@@ -18,6 +18,8 @@ const CONFIG = {
   fields: {
     effortLevel: "1206065778986020",
     status: "1206065778986026",
+    priorityRank: "1207532336387929",
+    clientPriority: "1206373227048995",
     calendarColor: "1202123315418041",
   },
   effortPoints: {
@@ -130,13 +132,26 @@ async function asanaGetAll(path: string, pat: string): Promise<any[]> {
 }
 
 async function fetchAnalystTasks(analystGid: string, pat: string) {
+  const optFields = [
+    "name",
+    "due_on",
+    "start_on",
+    "completed",
+    "completed_at",
+    "custom_fields.gid",
+    "custom_fields.enum_value.gid",
+    "custom_fields.enum_value.name",
+    "memberships.project.gid",
+    "memberships.section.name",
+  ].join(",");
+
   const incompleteTasks = await asanaGetAll(
-    `/tasks?assignee=${analystGid}&workspace=${CONFIG.workspace}&completed_since=now&limit=100&opt_fields=name,due_on,start_on,completed,completed_at,custom_fields.gid,custom_fields.enum_value.gid,custom_fields.enum_value.name,memberships.project.gid,memberships.section.name`,
+    `/tasks?assignee=${analystGid}&workspace=${CONFIG.workspace}&completed_since=now&limit=100&opt_fields=${optFields}`,
     pat
   );
   const tenWeeksAgo = addDays(today(), -70);
   const completedTasks = await asanaGetAll(
-    `/tasks?assignee=${analystGid}&workspace=${CONFIG.workspace}&completed_since=${dateStr(tenWeeksAgo)}&limit=100&opt_fields=name,due_on,start_on,completed,completed_at,custom_fields.gid,custom_fields.enum_value.gid,custom_fields.enum_value.name,memberships.project.gid,memberships.section.name`,
+    `/tasks?assignee=${analystGid}&workspace=${CONFIG.workspace}&completed_since=${dateStr(tenWeeksAgo)}&limit=100&opt_fields=${optFields}`,
     pat
   );
   const onlyCompleted = completedTasks.filter((t: any) => t.completed);
@@ -179,6 +194,8 @@ function parseTask(task: any) {
   let statusGid: string | null = null;
   let effortName: string | null = null;
   let statusName: string | null = null;
+  let priorityRank: string | null = null;
+  let clientPriority: string | null = null;
 
   for (const cf of (task.custom_fields || [])) {
     if (cf.gid === CONFIG.fields.effortLevel && cf.enum_value) {
@@ -188,6 +205,12 @@ function parseTask(task: any) {
     if (cf.gid === CONFIG.fields.status && cf.enum_value) {
       statusGid = cf.enum_value.gid;
       statusName = cf.enum_value.name;
+    }
+    if (cf.gid === CONFIG.fields.priorityRank && cf.enum_value) {
+      priorityRank = cf.enum_value.name;
+    }
+    if (cf.gid === CONFIG.fields.clientPriority && cf.enum_value) {
+      clientPriority = cf.enum_value.name;
     }
   }
 
@@ -209,6 +232,8 @@ function parseTask(task: any) {
     effortName: effortName || "Need to scope", effortPoints: points,
     statusName: statusName || "No status",
     statusGroup: task.completed ? "Done" : group, client,
+    priorityRank,
+    clientPriority,
   };
 }
 
@@ -218,7 +243,7 @@ function buildCalendarMap(events: any[], analystGids: string[]) {
 
   for (const event of events) {
     const assigneeGid = event.assignee?.gid;
-    if (!assigneeGid || !map[assigneeGid]) continue;
+    const recipients = assigneeGid && map[assigneeGid] ? [assigneeGid] : Object.keys(map);
     let colorName: string | null = null;
     for (const cf of (event.custom_fields || [])) {
       if (cf.gid === CONFIG.fields.calendarColor && cf.enum_value) {
@@ -242,7 +267,9 @@ function buildCalendarMap(events: any[], analystGids: string[]) {
     let current = new Date(s);
     while (current <= end) {
       const ds = dateStr(current);
-      map[assigneeGid][ds] = { type: matchedType, color: colorName, capacity };
+      for (const recipient of recipients) {
+        map[recipient][ds] = { type: matchedType, color: colorName, capacity };
+      }
       current = addDays(current, 1);
     }
   }

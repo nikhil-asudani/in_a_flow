@@ -1,5 +1,3 @@
-import rawData from './inaflow_output.json';
-
 export type Signal = "Optimal" | "Underutilized" | "Overloaded"
 export type EffortLevel = "Low effort" | "Medium effort" | "High effort" | "Very High" | "Need to scope" | string
 export type TaskStatus = "working" | "overdue" | "blocked" | "unscoped"
@@ -15,10 +13,14 @@ export interface Task {
   gid: string
   name: string
   dueOn: string | null
+  startOn: string | null
   effortName: string
   effortPoints: number
   statusGroup: string
+  statusName: string
   client: string
+  priorityRank: string | null
+  clientPriority: string | null
 }
 
 export interface ChartDay {
@@ -83,21 +85,20 @@ function mapRawToAnalysts(data: Record<string, any>): Analyst[] {
 }
 
 // Static data from build time (fallback)
-export const analysts: Analyst[] = mapRawToAnalysts(rawData);
+export const analysts: Analyst[] = [];
 
 // API data fetcher (for client-side refresh)
-export async function fetchAnalystsFromAPI(): Promise<{ analysts: Analyst[]; syncedAt: string } | null> {
-  try {
-    const res = await fetch("/api/data");
-    if (!res.ok) return null;
-    const json = await res.json();
-    return {
-      analysts: mapRawToAnalysts(json.data),
-      syncedAt: json.syncedAt,
-    };
-  } catch {
-    return null;
+export async function fetchAnalystsFromAPI(): Promise<{ analysts: Analyst[]; syncedAt: string }> {
+  const res = await fetch("/api/data");
+  if (!res.ok) {
+    const json = await res.json().catch(() => null);
+    throw new Error(json?.error || `Failed to load data (${res.status})`);
   }
+  const json = await res.json();
+  return {
+    analysts: mapRawToAnalysts(json.data),
+    syncedAt: json.syncedAt,
+  };
 }
 
 // Trigger a sync and return fresh data

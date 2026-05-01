@@ -482,81 +482,148 @@ function DailyLoadChart({ analyst }: { analyst: Analyst }) {
   )
 }
 
-// Task List Component
+function formatTaskDateRange(startOn: string | null, dueOn: string | null) {
+  if (!dueOn) return "—"
+  const due = new Date(dueOn)
+  const dueLabel = due.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "America/New_York" })
+  if (!startOn) return dueLabel
+  const start = new Date(startOn)
+  const startLabel = start.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "America/New_York" })
+  return `${startLabel} – ${dueLabel}`
+}
+
+const PRIORITY_ORDER = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "Flexible",
+  "Internal",
+  "Not Urgent",
+]
+
+function getPrioritySortIndex(value: string | null) {
+  if (!value) return PRIORITY_ORDER.length
+  const index = PRIORITY_ORDER.indexOf(value)
+  return index === -1 ? PRIORITY_ORDER.length : index
+}
+
+function sortByPriorityRank(tasks: Task[]) {
+  return [...tasks].sort((a, b) => {
+    const left = getPrioritySortIndex(a.priorityRank)
+    const right = getPrioritySortIndex(b.priorityRank)
+    if (left !== right) return left - right
+    return a.name.localeCompare(b.name)
+  })
+}
+
 function TaskList({ tasks }: { tasks: Analyst['tasks'] }) {
-  const overdueTasks = tasks.overdue || []
-  const workingTasks = tasks.working || []
-  const blockedTasks = tasks.blocked || []
-  const unscopedTasks = tasks.unscoped || []
+  const overdueTasks = sortByPriorityRank(tasks.overdue || [])
+  const activeTasks = sortByPriorityRank([...(tasks.working || []), ...(tasks.unscoped || [])])
+  const blockedTasks = sortByPriorityRank(tasks.blocked || [])
 
-  const renderTask = (task: Task, index: number, isBlocked = false, isOverdue = false) => {
-    let dueStr = "No due date"
-    if (task.dueOn) {
-      const d = new Date(task.dueOn)
-      dueStr = `Due ${d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" })}`
-    }
-    
-    return (
-      <div
-        key={`${task.gid}-${index}`}
-        className={cn(
-          "bg-card rounded-lg px-3.5 py-2.5 flex items-center gap-3 mb-1.5",
-          isBlocked && "opacity-70"
-        )}
-      >
-        <span className="text-[13px] text-muted-foreground w-5 flex-shrink-0">{index}.</span>
-        <span className="text-[13px] text-foreground flex-1 min-w-0 truncate" title={task.name}>{task.name}</span>
-        <span className="text-[11px] text-muted-foreground flex-shrink-0 flex items-center gap-1.5">
-          {dueStr}
-          {isOverdue && (
-            <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-[#FCEBEB] text-[#791F1F]">
-              Overdue
-            </span>
-          )}
-        </span>
-        <span
-          className={cn("text-[11px] font-medium px-2 py-0.5 rounded-full flex-shrink-0", getEffortColor(task.effortName))}
-        >
-          {task.effortName.replace(" effort", "")}
-        </span>
+  const renderRows = (items: Task[]) =>
+    items.map((task, index) => (
+      <tr key={task.gid} className="border-b border-border last:border-b-0">
+        <td className="px-3 py-3 text-[13px] text-muted-foreground">{index + 1}</td>
+        <td className="px-3 py-3 text-[13px] text-foreground max-w-[240px] truncate" title={task.name}>{task.name}</td>
+        <td className="px-3 py-3 text-[13px] text-muted-foreground">{task.client}</td>
+        <td className="px-3 py-3 text-[13px] text-muted-foreground">{task.priorityRank || '—'}</td>
+        <td className="px-3 py-3 text-[13px] text-muted-foreground">{task.clientPriority || '—'}</td>
+        <td className="px-3 py-3 text-[13px] text-foreground">
+          <span className={cn("inline-flex rounded-full px-2 py-1 text-[11px] font-medium", getEffortColor(task.effortName))}>
+            {task.effortName.replace(/ effort$/i, "")}
+          </span>
+        </td>
+        <td className="px-3 py-3 text-[13px] text-muted-foreground">{formatTaskDateRange(task.startOn, task.dueOn)}</td>
+        <td className="px-3 py-3 text-[13px] text-muted-foreground">{task.statusName}</td>
+      </tr>
+    ))
+
+  const renderSection = (title: string, items: Task[], accent: string, emptyMessage: string) => (
+    <section className={cn("rounded-2xl border p-4", accent)}>
+      <div className="mb-3 flex items-center justify-between">
+        <h4 className="text-[12px] uppercase tracking-wider font-medium">{title}</h4>
+        <span className="text-[11px] text-muted-foreground">{items.length} tasks</span>
       </div>
-    )
-  }
-
-  let taskIndex = 0
-
-  return (
-    <div>
-      {overdueTasks.map((task) => {
-        taskIndex++
-        return renderTask(task, taskIndex, false, true)
-      })}
-      {workingTasks.map((task) => {
-        taskIndex++
-        return renderTask(task, taskIndex, false, false)
-      })}
-      {blockedTasks.length > 0 && (
-        <div className="mt-4 pt-4 border-t border-border">
-          <h4 className="text-[13px] text-muted-foreground uppercase tracking-wider mb-3 font-medium">
-            Blocked
-          </h4>
-          {blockedTasks.map((task) => {
-            taskIndex++
-            return renderTask(task, taskIndex, true, false)
-          })}
+      {items.length === 0 ? (
+        <p className="text-[13px] text-muted-foreground">{emptyMessage}</p>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="min-w-full border-separate border-spacing-0 text-left">
+            <thead className="bg-background/80 text-[11px] uppercase tracking-wider text-muted-foreground">
+              <tr>
+                <th className="px-3 py-2">#</th>
+                <th className="px-3 py-2">Task Name</th>
+                <th className="px-3 py-2">Client</th>
+                <th className="px-3 py-2">Priority Rank</th>
+                <th className="px-3 py-2">Client Priority</th>
+                <th className="px-3 py-2">Effort</th>
+                <th className="px-3 py-2">Dates</th>
+                <th className="px-3 py-2">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {renderRows(items)}
+            </tbody>
+          </table>
         </div>
       )}
-      {unscopedTasks.map((task) => {
-        taskIndex++
-        return renderTask(task, taskIndex, false, false)
-      })}
-      {taskIndex === 0 && <p className="text-[13px] text-muted-foreground italic">No active tasks</p>}
+    </section>
+  )
+
+  return (
+    <div className="space-y-4">
+      {renderSection(
+        "Overdue",
+        overdueTasks,
+        "border border-[#F5D3D3] bg-[#FEF1F1]",
+        "No overdue working tasks in the last 15 working days."
+      )}
+      {renderSection(
+        "Active",
+        activeTasks,
+        "border border-border bg-secondary",
+        "No active working tasks in the next 15 working days."
+      )}
+      {renderSection(
+        "Blocked",
+        blockedTasks,
+        "border border-border bg-muted/10",
+        "No blocked tasks."
+      )}
     </div>
   )
 }
 
 // Analyst Detail Panel Component
-function AnalystDetail({ analyst }: { analyst: Analyst }) {
+function AnalystDetail({ analyst, loadError, isLoadingData }: { analyst?: Analyst; loadError: string | null; isLoadingData: boolean }) {
+  if (isLoadingData) {
+    return (
+      <main className="flex-1 bg-background flex items-center justify-center text-muted-foreground">
+        Loading analyst data…
+      </main>
+    )
+  }
+
+  if (loadError) {
+    return (
+      <main className="flex-1 bg-background flex items-center justify-center px-6">
+        <div className="rounded-2xl border border-[#D0D5DD] bg-white p-8 text-center shadow-sm">
+          <h2 className="text-lg font-semibold text-foreground mb-2">No data available</h2>
+          <p className="text-sm text-muted-foreground mb-4">{loadError}</p>
+          <p className="text-sm text-muted-foreground">Click Refresh to retry the sync from Asana.</p>
+        </div>
+      </main>
+    )
+  }
+
   if (!analyst) return <main className="flex-1 bg-background flex items-center justify-center text-muted-foreground">Select an analyst</main>
 
   const colors = getSignalColor(analyst.signal)
@@ -652,18 +719,33 @@ export default function Dashboard() {
   const [syncedAt, setSyncedAt] = useState<string | null>(null)
   const [isSyncing, setIsSyncing] = useState(false)
   const [syncError, setSyncError] = useState<string | null>(null)
+  const [isLoadingData, setIsLoadingData] = useState(true)
+  const [loadError, setLoadError] = useState<string | null>(null)
 
   // On mount, try to load fresh data from API (Vercel Blob)
   useEffect(() => {
-    fetchAnalystsFromAPI().then((result) => {
-      if (result) {
+    let isActive = true
+    const load = async () => {
+      setIsLoadingData(true)
+      setLoadError(null)
+      try {
+        const result = await fetchAnalystsFromAPI()
+        if (!isActive) return
         setAnalysts(result.analysts)
         setSyncedAt(result.syncedAt)
         if (!result.analysts.find(a => a.id === selectedId)) {
           setSelectedId(result.analysts[0]?.id || "")
         }
+      } catch (error: any) {
+        if (!isActive) return
+        setLoadError(error?.message || "Unable to load data from the API.")
+      } finally {
+        if (isActive) setIsLoadingData(false)
       }
-    })
+    }
+
+    load()
+    return () => { isActive = false }
   }, [])
 
   const handleRefresh = useCallback(async () => {
@@ -692,9 +774,13 @@ export default function Dashboard() {
 
   const selectedAnalyst = analysts.find((a) => a.id === selectedId) || analysts[0]
 
-  const syncLabel = syncedAt
-    ? `Synced ${new Date(syncedAt).toLocaleString("en-US", { timeZone: "America/New_York", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false })} EST`
-    : "Static data"
+  const syncLabel = isLoadingData
+    ? "Loading data..."
+    : syncedAt
+      ? `Synced ${new Date(syncedAt).toLocaleString("en-US", { timeZone: "America/New_York", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false })} EST`
+      : loadError
+        ? "No data loaded"
+        : "Static data"
 
   return (
     <div className="flex h-screen bg-background">
@@ -758,11 +844,13 @@ export default function Dashboard() {
             )
           })}
           {filteredAnalysts.length === 0 && (
-            <p className="text-[13px] text-muted-foreground px-2 py-4">No analysts found</p>
+            <p className="text-[13px] text-muted-foreground px-2 py-4">
+              {loadError ? loadError : isLoadingData ? "Loading analysts..." : "No analysts found. Refresh to sync data."}
+            </p>
           )}
         </div>
       </aside>
-      <AnalystDetail analyst={selectedAnalyst} />
+      <AnalystDetail analyst={selectedAnalyst} loadError={loadError} isLoadingData={isLoadingData} />
     </div>
   )
 }
